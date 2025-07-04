@@ -124,4 +124,5 @@ artifacts/
 !artifacts/model_evaluation/
 !artifacts/model_evaluation/evaluation_results.json
 
+Data/TrainAndValid.csv
 
