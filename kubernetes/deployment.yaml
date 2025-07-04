@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bulldozer-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bulldozer-app
+  template:
+    metadata:
+      labels:
+        app: bulldozer-app
+    spec:
+      containers:
+      - name: bulldozer-app
+        image: spencer0013/bulldozer-app:latest
+        ports:
+        - containerPort: 8501
+
