@@ -198,3 +198,4 @@ bull/*
 artifacts/*
 !artifacts/model_evaluation/
 !artifacts/model_evaluation/evaluation_results.json
+echo "Data/TrainAndValid.csv" >> .gitignore
