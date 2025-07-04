@@ -28,10 +28,18 @@ jobs:
         push: true
         tags: spencer0013/bulldozer-app:latest
 
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
+    # ✅ Authenticate to Google Cloud
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
       with:
-        version: 'latest'
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+    # ✅ Get GKE credentials
+    - name: Get GKE credentials
+      uses: google-github-actions/get-gke-credentials@v2
+      with:
+        cluster_name: bulldozer-cluster
+        location: us-central1-c
 
     - name: Deploy to Kubernetes
       run: |
