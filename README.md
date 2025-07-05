@@ -67,7 +67,13 @@ streamlit run app.py    # Launch the web app
 Model Trainer results
 ![alt text](image-2.png)
 
+
+
+
 Streamlit file upload view
+
+
+
 ![alt text](image.png)
 
 
