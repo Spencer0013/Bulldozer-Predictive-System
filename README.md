@@ -71,6 +71,7 @@ Streamlit file upload view
 ![alt text](image.png)
 
 Prediction results table
+
 ![alt text](image-1.png)
 
 # 🙋 About Me
