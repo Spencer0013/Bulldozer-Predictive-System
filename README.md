@@ -56,11 +56,11 @@ Automated project structure creation via template.py.
 
 # 🏃 Getting Started
 
-git clone https://github.com/Opeyemi/Bulldozer-Prediction.git
-cd Bulldozer-Prediction
-pip install -r requirements.txt
-python main.py          # Run the end-to-end ML pipeline
-streamlit run app.py    # Launch the web app
+- git clone https://github.com/Opeyemi/Bulldozer-Prediction.git
+- cd Bulldozer-Prediction
+- pip install -r requirements.txt
+- python main.py          # Run the end-to-end ML pipeline
+- streamlit run app.py    # Launch the web app
 
 # 🌟 Screenshots
 
