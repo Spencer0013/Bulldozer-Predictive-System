@@ -1,85 +1,92 @@
-## 🚜 Bulldozer Price Prediction — Portfolio Project
+## Bulldozer Predictive System
 
-Welcome to the Bulldozer Price Prediction project! This end-to-end machine learning solution was inspired by the Kaggle Bluebook for Bulldozers competition, which aimed to predict the auction sale price of bulldozers using historical data. This project adapts that challenge into a fully modular, production-ready system showcasing strong skills in data science, MLOps, and full-stack ML deployment.
+This project predicts the sale price of bulldozers using historical auction data. It’s built as a complete machine learning pipeline: raw CSVs are ingested, cleaned, and transformed, models are trained and tuned, results are evaluated, and predictions can be made through a Streamlit web app.
 
-# ✨ Highlights
+## Project Background
 
-✅ Complete ML pipeline from raw data to deployment✅ Multiple model comparisons and hyperparameter tuning✅ Interactive web app for real-time predictions✅ Dockerized and Kubernetes-ready for cloud scalability
+The dataset is based on bulldozer sales history (the “Blue Book for Bulldozers” from Kaggle). The task is to predict SalePrice given machine specifications and auction details.
 
-# 📄 Project Overview
+Key points to handle in this problem:
 
-We leverage historical auction data to forecast bulldozer prices using a robust and reproducible ML pipeline. The system demonstrates solid engineering practices, extensive model experimentation, and readiness for real-world deployment.
+The data is time-based, so training and validation splits are done by year, not randomly.
 
-# 🏗️ Pipeline Breakdown
+The saledate column is transformed into useful time features such as year, month, day of week, and day of year.
 
-Data Ingestion: Reads raw data files, parses dates, and engineers additional time-based features.
+Both numerical and categorical data are present and require different preprocessing.
 
-Data Transformation: Splits data into train, validation, and test sets using year-based splits, applies preprocessing with imputation and encoding.
+The chosen evaluation metric is Root Mean Squared Log Error (RMSLE), which punishes large percentage errors.
 
-Model Training: Trains several regressors (Linear, Tree-based, Boosting models), selects the best model based on RMSLE.
+How the System Works
+## Data ingestion
 
-Model Tuning: Performs hyperparameter optimization using randomized search and time series cross-validation for robust performance improvements.
+Reads the raw train and test files.
 
-Model Evaluation: Evaluates models using RMSLE. Final validation RMSLE achieved: 0.2610.
+Parses saledate and adds date-based features.
 
-# 💻 Interactive Web App
+Saves the cleaned datasets for downstream processing.
 
-Developed using Streamlit, enabling users to:
+## Data transformation
 
-Upload custom CSV data
+Splits numeric and categorical columns.
 
-Preview and process data
+Numeric features are median-imputed.
 
-Generate price predictions
+Categorical features are imputed and then ordinal-encoded.
 
-Download results with predictions attached
+The preprocessing pipeline is saved for later reuse.
 
-# 🚀 Deployment
+## Model training
 
-Docker: Ensures reproducible and consistent builds.
+Trains several regression models: linear models, decision trees, random forests, gradient boosting, XGBoost, CatBoost, etc.
 
-Kubernetes: YAML configurations (deployment.yaml, service.yaml, deploy.yml) for scalable cloud deployment.
+Evaluates each model on the validation set using RMSLE.
 
-# ⚙️ Configuration & Structure
+Selects and saves the best-performing model.
 
-All parameters controlled via config.yaml.
+## Model tuning
 
-Clean, modular structure within bullprediction package.
+Focuses on Random Forest, which performed best among baselines.
 
-Automated project structure creation via template.py.
+Uses randomized search with time-series cross-validation to tune hyperparameters.
 
-# 📊 Evaluation Metric
+Saves the tuned Random Forest model.
 
-{
-    "validation_rmsle": 0.2610
-}
+## Model evaluation
 
-# 🏃 Getting Started
+Loads the tuned model and evaluates it on the validation set.
 
-git clone https://github.com/Opeyemi/Bulldozer-Prediction.git
-cd Bulldozer-Prediction
-pip install -r requirements.txt
-python main.py          # Run the end-to-end ML pipeline
-streamlit run app.py    # Launch the web app
+RMSLE is calculated and stored in a results file.
 
-# 🌟 Screenshots
+## Orchestration
 
-Model Trainer results
-![alt text](image-2.png)
+The full pipeline is controlled in main.py, running each stage in order.
 
-Streamlit file upload view
-![alt text](image.png)
+Logs track the process for reproducibility.
 
-Prediction results table
-![alt text](image-1.png)
+## Streamlit app
 
-# 🙋 About Me
+Users can upload their own CSVs.
 
-Name: Opeyemi Aina
+The system applies the saved preprocessing pipeline and tuned model to generate predictions.
 
-GitHub: Spencer0013
+Results are displayed and can be downloaded as a new CSV.
 
-Email: ainaopeyemi53@gmail.com
+## Results
 
-🚀 A polished, competition-inspired project demonstrating production-ready machine learning and MLOps expertise.
+From the latest evaluation:
 
+Validation RMSLE: 0.261
+
+This means predictions are usually within about 26% of the true bulldozer sale price, which is strong performance for auction data.
+
+## Key Takeaways
+
+Automated preprocessing with robust handling of mixed numeric and categorical data.
+
+Feature engineering from dates adds strong predictive value.
+
+Multiple models tested, with a tuned Random Forest emerging as the most effective.
+
+RMSLE of 0.261 shows the model generalizes well.
+
+A user-friendly Streamlit app makes predictions easy to generate and download.
