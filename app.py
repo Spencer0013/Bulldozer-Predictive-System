@@ -63,7 +63,7 @@ if uploaded_file:
         df_display['Predicted SalePrice'] = preds
 
         #  Show predictions
-        st.subheader("🔍 Prediction Results")
+        st.subheader(" Prediction Results")
         st.dataframe(df_display[['saledate', 'Predicted SalePrice']].head(10))
 
         # Offer download button
