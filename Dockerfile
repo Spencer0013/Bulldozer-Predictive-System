@@ -3,7 +3,7 @@ FROM python:3.10
 # Set working directory inside the container
 WORKDIR /app
 
-# ❗ Copy everything first (including setup.py)
+#  Copy everything first (including setup.py)
 COPY . /app
 
 # Install Python dependencies (includes -e .)
