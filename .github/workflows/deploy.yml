@@ -28,13 +28,13 @@ jobs:
         push: true
         tags: spencer0013/bulldozer-app:latest
 
-    # ✅ Authenticate to Google Cloud
+    #  Authenticate to Google Cloud
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-    # ✅ Get GKE credentials
+    #  Get GKE credentials
     - name: Get GKE credentials
       uses: google-github-actions/get-gke-credentials@v2
       with:
