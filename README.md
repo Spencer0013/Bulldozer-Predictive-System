@@ -1,4 +1,4 @@
-##] Bulldozer Predictive System
+## Bulldozer Predictive System
 
 This project predicts the sale price of bulldozers using historical auction data. It’s built as a complete machine learning pipeline: raw CSVs are ingested, cleaned, and transformed, models are trained and tuned, results are evaluated, and predictions can be made through a Streamlit web app.
 
